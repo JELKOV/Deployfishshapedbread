@@ -29,5 +29,4 @@
 ![image](https://github.com/user-attachments/assets/1f38f58c-56d6-4044-9c20-2d2643d42b18)
 ![image](https://github.com/user-attachments/assets/b4b59554-431d-4e57-982f-ea4b2372f902)
 
-
-- Docker-AWS를 통한 배포 완성 -안제호
+## Docker-AWS를 통한 배포 완성 -안제호
