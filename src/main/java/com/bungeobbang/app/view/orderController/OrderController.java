@@ -3,9 +3,6 @@ package com.bungeobbang.app.view.orderController;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bungeobbang.app.biz.point.PointDAO;
-import com.bungeobbang.app.biz.point.PointDTO;
-import com.bungeobbang.app.biz.point.PointService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +14,8 @@ import com.bungeobbang.app.biz.order.OrderDTO;
 import com.bungeobbang.app.biz.order.OrderService;
 import com.bungeobbang.app.biz.orderDetail.OrderDetailDAO;
 import com.bungeobbang.app.biz.orderDetail.OrderDetailDTO;
+import com.bungeobbang.app.biz.point.PointDTO;
+import com.bungeobbang.app.biz.point.PointService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;

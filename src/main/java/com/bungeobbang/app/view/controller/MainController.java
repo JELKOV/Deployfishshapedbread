@@ -1,5 +1,20 @@
 package com.bungeobbang.app.view.controller;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.bungeobbang.app.biz.board.BoardDTO;
 import com.bungeobbang.app.biz.board.BoardService;
 import com.bungeobbang.app.biz.boardCate.BoardCateDTO;
@@ -8,18 +23,11 @@ import com.bungeobbang.app.biz.product.ProductDTO;
 import com.bungeobbang.app.biz.product.ProductService;
 import com.bungeobbang.app.biz.productCate.ProductCateService;
 import com.bungeobbang.app.view.util.CookieUtil;
+
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
-import java.util.*;
 
 @Controller("main")
 @Slf4j
@@ -46,6 +54,9 @@ public class MainController {
     private final String PAGE_MAIN = "main"; //views 하위 메인페이지
     private final String FAIL_URL = "failInfo2"; //실패페이지
 
+    @Value("${map.api.key}")
+    private String mapApiKey;
+    
     //메인페이지 이동
     @RequestMapping("/main.do")
     public String main(HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -159,10 +170,12 @@ public class MainController {
         //데이터 전달
         model.addAttribute("viewProductList", resentProduct); // 최근에 본 상품
         model.addAttribute("recommProductList", recommendedProduct); // 추천 상품
+        model.addAttribute("mapApiKey", mapApiKey);// mapApiKey를 view로 전달
 
         //확인
         log.info("log: main - send resentProducts : [{}]", resentProduct);
         log.info("log: main - send recommendedProducts : [{}]", recommendedProduct);
+        log.info("log: /main.do main - end");
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         log.info("log: /main.do main - end");

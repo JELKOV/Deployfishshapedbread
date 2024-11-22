@@ -52,7 +52,14 @@ $(document).ready(function() {
         const totalCheckboxes = $('.product-checkbox').length;
         const checkedCheckboxes = $('.product-checkbox:checked').length;
 
-        $('#selectAll').prop('checked', totalCheckboxes === checkedCheckboxes);
+		// 전체 선택 체크박스 상태를 결정
+		if (checkedCheckboxes === totalCheckboxes) {
+		    $('#selectAll').prop('checked', true);
+		    $('#selectAll').next('label').text('전체 해제'); // 선택된 상태 표시
+		} else {
+		    $('#selectAll').prop('checked', false);
+		    $('#selectAll').next('label').text('전체 선택'); // 일부 또는 0개 선택된 상태 표시
+		}
 
         // 전체 삭제 버튼 표시 여부 결정
         if (checkedCheckboxes > 0) {
@@ -174,8 +181,19 @@ async function removeProduct(productId) {
                     console.log('서버에서 제품이 성공적으로 삭제되었습니다.');
                     productList.splice(productIndex, 1); // productList 배열에서 해당 제품 제거
                     productItem.remove(); // 화면에서 해당 제품 요소 삭제
+					// 선택된 제품 수를 확인하여 `deleteAllBtn`의 표시 여부를 결정합니다.
+	                const checkedCheckboxes = $('.product-checkbox:checked').length;
+	                if (checkedCheckboxes > 0) {
+	                    $('#deleteAllBtn').show();
+	                } else {
+	                    $('#deleteAllBtn').hide();
+	                }
+	
+	                // 남은 모든 체크박스가 선택되었는지 여부에 따라 `#selectAll` 상태를 업데이트합니다.
+	                const totalCheckboxes = $('.product-checkbox').length;
+	                $('#selectAll').prop('checked', totalCheckboxes === checkedCheckboxes);
+					
                     renderCart(false); // 장바구니를 다시 렌더링하여 최신 상태로 갱신
-                    resetSelectionButtons(); // 버튼 초기화 함수 호출
                 } else {
                     console.error('서버에서 제품 삭제 실패:', result.message); // 실패 메시지 출력
                     Swal.fire({
@@ -218,6 +236,9 @@ async function removeAllProducts() {
     for (let productId of productsToDelete) {
         await removeProduct(productId); // 개별 제품 삭제 후 다음 제품으로 진행
     }
+	// 모든 제품이 삭제된 후 전체 선택 상태를 해제
+	$('#selectAll').prop('checked', false);
+	$('#selectAll').next('label').text('전체 선택');
 }
 
 // 제품 수량 업데이트 함수

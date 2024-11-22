@@ -1,5 +1,5 @@
 var IMP = window.IMP;
-IMP.init("API 키 재발급");
+IMP.init(impInitKey);
 
 function requestPay() {
     // 사전 결제 보내는 값
