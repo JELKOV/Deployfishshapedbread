@@ -42,18 +42,9 @@
 <!-- appkey에 발급받은 APP KEY를 넣음 -->
 <!-- 추가 기능 사용 시 &libraries=services 코드 추가(주소를 좌표로) -->
 <script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey='지도 api 키 입력'&libraries=services"></script>
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${mapApiKey}&libraries=services"></script>
 <!-- sweetAlert을 사용하기 위한 script -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<!-- js를 쓰므로 jquery 사용 -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- 외부 script 파일 사용 -->
-<script src="${path}/resources/assets/js/store/storeList.js"></script>
-<script src="${path}/resources/assets/js/store/copy.js"></script>
-<script src="${path}/resources/assets/js/store/selectList.js"></script>
-<script src="${path}/resources/assets/js/map/printMap.js"></script>
-<script src="${path}/resources/assets/js/store/addressSearch.js"></script>
 
 </head>
 <body>
@@ -107,4 +98,13 @@
 		<custom:footer />
 	</div>
 </body>
+
+<!-- js를 쓰므로 jquery 사용 -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 외부 script 파일 사용 -->
+<script src="${path}/resources/assets/js/store/storeList.js"></script>
+<script src="${path}/resources/assets/js/store/copy.js"></script>
+<script src="${path}/resources/assets/js/store/selectList.js"></script>
+<script src="${path}/resources/assets/js/map/printMap.js"></script>
+<script src="${path}/resources/assets/js/store/addressSearch.js"></script>
 </html>

@@ -34,7 +34,7 @@ alter table bb_MEMBER auto_increment=1;
 -- INSERT 시 서버를 동작시켜 크롤링 상품 INSERT 이후에 SAMPLE DATA INSERT
 
 -- 상품 카테고리 데이터
-INSERT INTO bb_product_category (PRODUCT_CATEGORY_NUM,PRODUCT_CATEGORY_NAME)
+INSERT INTO BB_PRODUCT_CATEGORY (PRODUCT_CATEGORY_NUM,PRODUCT_CATEGORY_NAME)
 VALUES (1,'문구/사무'),
        (2,'리빙'),
        (3,'패션/잡화'),
@@ -42,7 +42,7 @@ VALUES (1,'문구/사무'),
        (5,'홈데코');
 
 -- Member 데이터
-INSERT INTO bb_member (MEMBER_NUM, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_NAME, MEMBER_NICKNAME, MEMBER_PHONE, MEMBER_PROFILE_WAY, MEMBER_ROLE)
+INSERT INTO BB_MEMBER (MEMBER_NUM, MEMBER_EMAIL, MEMBER_PASSWORD, MEMBER_NAME, MEMBER_NICKNAME, MEMBER_PHONE, MEMBER_PROFILE_WAY, MEMBER_ROLE)
 VALUES (1,'admin', '1234', '관리자', '관리자', '010-1111-1111', 'default_profile.png', 'ADMIN'),
        (2,'cndgus0509@naver.com', 'admin1234!', '조충현', '충현핑', '010-1111-1112', 'default_profile.png', 'ADMIN'),
        (3,'rhalwls56', 'admin1234!', '고미진', '미진핑', '010-2222-2222', 'default_profile.png', 'ADMIN'),
@@ -63,7 +63,7 @@ VALUES (1,'admin', '1234', '관리자', '관리자', '010-1111-1111', 'default_p
 
 -- BB_STORE 샘플 데이터 (역삼역 부근 도로명주소)
 TRUNCATE table BB_STORE; -- 테이블 초기화
-INSERT INTO bb_store (STORE_NAME, STORE_ADDRESS, STORE_ADDRESS_DETAIL, STORE_CONTACT, STORE_CLOSED, STORE_SECRET)
+INSERT INTO BB_STORE (STORE_NAME, STORE_ADDRESS, STORE_ADDRESS_DETAIL, STORE_CONTACT, STORE_CLOSED, STORE_SECRET)
 VALUES 
 -- 서울 종로구
 ('경복궁 붕어빵', '서울 종로구 사직로 161', '경복궁 앞', '02-1111-1111', 'N', 'N'),
@@ -272,7 +272,7 @@ TRUNCATE table BB_DECLARE;
 INSERT INTO BB_DECLARE (STORE_NUM, DECLARE_CONTENT)
 values (7, '폐점 신고'),(7, '폐점 신고'),(7, '폐점 신고');
 
-INSERT INTO bb_payment (MEMBER_NUM, PAYMENT_AMOUNT, PAYMENT_NAME, IMP_UUID)
+INSERT INTO BB_PAYMENT (MEMBER_NUM, PAYMENT_AMOUNT, PAYMENT_NAME, IMP_UUID)
 VALUES (1, 10000, '10000 포인트 구매', 'e7a1c1bc-1c4e-4d84-8b95-9b2aaffffac0'),
        (1, 15000, '15000 포인트 구매', 'e0f25d5e-31bb-4f5d-a5e0-01c7fc3c7b20'),
        (1, 20000, '20000 포인트 구매', '3c8a31a1-ec45-4d41-b12f-e6a60c0c6c80'),
@@ -290,7 +290,7 @@ VALUES (1, 10000, '10000 포인트 구매', 'e7a1c1bc-1c4e-4d84-8b95-9b2aaffffac
 -- BB_POINT 샘플 데이터(충전, 상품 구매 TRIGGER)
       
 -- BB_STORE_MENU 샘플 데이터
-INSERT INTO bb_store_menu (STORE_NUM, STORE_MENU_NORMAL, STORE_MENU_VEG, STORE_MENU_MINI, STORE_MENU_POTATO,
+INSERT INTO BB_STORE_MENU (STORE_NUM, STORE_MENU_NORMAL, STORE_MENU_VEG, STORE_MENU_MINI, STORE_MENU_POTATO,
                            STORE_MENU_ICE, STORE_MENU_CHEESE, STORE_MENU_PASTRY, STORE_MENU_OTHER)
 VALUES (1, 'Y', 'Y', 'N', 'Y', 'Y', 'Y', 'N', 'N'),
        (2, 'Y', 'N', 'Y', 'Y', 'N', 'Y', 'Y', 'N'),
@@ -343,7 +343,7 @@ VALUES (1, 'Y', 'Y', 'N', 'Y', 'Y', 'Y', 'N', 'N'),
        (50, 'Y', 'N', 'Y', 'Y', 'N', 'Y', 'N', 'N');
        
 -- BB_STORE_PAYMENT 샘플 데이터
-INSERT INTO bb_store_payment (STORE_NUM, STORE_PAYMENT_CASHMONEY, STORE_PAYMENT_CARD, STORE_PAYMENT_ACCOUNT)
+INSERT INTO BB_STORE_PAYMENT (STORE_NUM, STORE_PAYMENT_CASHMONEY, STORE_PAYMENT_CARD, STORE_PAYMENT_ACCOUNT)
 VALUES (1, 'Y', 'Y', 'N'),
        (2, 'Y', 'Y', 'Y'),
        (3, 'N', 'Y', 'Y'),
@@ -393,7 +393,7 @@ VALUES (1, 'Y', 'Y', 'N'),
        (50, 'Y', 'Y', 'Y');
 
 -- BB_STORE_WORK 샘플 데이터
-INSERT INTO bb_store_work (STORE_NUM, STORE_WORK_WEEK, STORE_WORK_OPEN, STORE_WORK_CLOSE)
+INSERT INTO BB_STORE_WORK (STORE_NUM, STORE_WORK_WEEK, STORE_WORK_OPEN, STORE_WORK_CLOSE)
 VALUES (1, 'MON', '2024-10-29 09:00:00', '2024-10-29 18:00:00'),
        (1, 'TUE', '2024-10-29 09:00:00', '2024-10-29 18:00:00'),
        (1, 'WED', '2024-10-29 09:00:00', '2024-10-29 18:00:00'),
@@ -457,13 +457,13 @@ VALUES (1, 'MON', '2024-10-29 09:00:00', '2024-10-29 18:00:00'),
        (50, 'MON', '2024-10-29 11:00:00','2024-10-29 20:00:00');
 
 -- 게시글 카테고리 데이터
-INSERT INTO bb_board_category (BOARD_CATEGORY_NUM, BOARD_CATEGORY_NAME)
+INSERT INTO BB_BOARD_CATEGORY (BOARD_CATEGORY_NUM, BOARD_CATEGORY_NAME)
 VALUES (1, 'noticeBoard'),
        (2, 'boardList');
 
 -- BB_BOARD 샘플 데이터
 TRUNCATE table BB_BOARD;
-INSERT INTO bb_board (BOARD_TITLE, BOARD_CONTENT, BOARD_FOLDER, MEMBER_NUM, BOARD_OPEN, BOARD_DELETE, BOARD_CATEGORY_NUM)
+INSERT INTO BB_BOARD (BOARD_TITLE, BOARD_CONTENT, BOARD_FOLDER, MEMBER_NUM, BOARD_OPEN, BOARD_DELETE, BOARD_CATEGORY_NUM)
 VALUES ('맛있는 붕어빵 후기', '정말 맛있었어요! 특히 팥앙금이 일품이에요', '/uploads/review1', 9, 'Y', 'N', 2),
        ('붕어빵 맛집 발견', '여기 붕어빵이 최고예요. 크기도 크고 맛도 좋아요', '/uploads/review2', 10, 'Y', 'N', 2),
        ('신메뉴 출시했습니다', '치즈붕어빵 새로 나왔어요. 많이 찾아주세요!', '/uploads/notice1', 3, 'Y', 'N', 2),
@@ -483,7 +483,7 @@ VALUES ('맛있는 붕어빵 후기', '정말 맛있었어요! 특히 팥앙금�
 
 -- BB_LIKE 샘플 데이터
 TRUNCATE table BB_LIKE
-INSERT INTO bb_like (BOARD_NUM, MEMBER_NUM)
+INSERT INTO BB_LIKE (BOARD_NUM, MEMBER_NUM)
 VALUES (1, 10),
        (1, 11),
        (1, 12),
@@ -511,7 +511,7 @@ VALUES (1, 10),
 
 -- BB_REPLY 샘플 데이터
 TRUNCATE bb_reply 
-INSERT INTO bb_reply (REPLY_CONTENT, MEMBER_NUM, BOARD_NUM)
+INSERT INTO BB_REPLY (REPLY_CONTENT, MEMBER_NUM, BOARD_NUM)
 VALUES ('저도 가보고 싶네요!', 10, 1),
        ('맛있어 보이네요~', 9, 2),
        ('기대됩니다!!', 11, 3),

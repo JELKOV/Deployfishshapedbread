@@ -21,6 +21,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <script>
+	    // 서버에서 전달된 키 값들을 JS 변수로 설정
+	    const channelKeyShinhan = '${channelKeyShinhan}';
+	    const channelKeyWoori = '${channelKeyWoori}';
+	    const channelKeyVirtualAccount = '${channelKeyVirtualAccount}';
+	    const channelKeyToss = '${channelKeyToss}';
+	
+	    const impInitKey = '${impInitKey}';
+	</script>
 </head>
 
 <body>

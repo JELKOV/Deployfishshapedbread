@@ -1,5 +1,17 @@
 package com.bungeobbang.app.view.storeController;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.bungeobbang.app.biz.board.BoardDTO;
 import com.bungeobbang.app.biz.board.BoardService;
 import com.bungeobbang.app.biz.store.StoreDTO;
@@ -11,15 +23,8 @@ import com.bungeobbang.app.biz.storePayment.StorePaymentService;
 import com.bungeobbang.app.biz.storeWork.StoreWorkDTO;
 import com.bungeobbang.app.biz.storeWork.StoreWorkService;
 import com.bungeobbang.app.view.util.PaginationUtils;
-import jakarta.servlet.http.HttpSession;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.*;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller("store")
 @Slf4j
@@ -54,11 +59,19 @@ public class StoreController {
 
     //msg
     private final String MSG_STORE_ADD = "가게 등록에 성공했습니다.";
+    
+    //@Value("${map.api.key}")
+    //private String mapApiKey;
 
     //가게 주소 검색 페이지 이동
     @RequestMapping(value = "/loadListStoreMap.do", method = RequestMethod.GET)
-    public String loadListStoreMap(){
+    public String loadListStoreMap(Model model){
         //전달할 데이터는 비동기 호출
+    	// 환경 변수 직접 접근
+    	String mapApiKey = System.getenv("MAP_API_KEY");
+    	log.info("log: 환경 변수에서 가져온 mapApiKey : [{}]", mapApiKey);
+
+    	model.addAttribute("mapApiKey", mapApiKey);
         log.info("log: /loadListStoreMap.do loadListStoreMap GET");
         return PAGE_MAP_STORE;
     }
@@ -169,10 +182,16 @@ public class StoreController {
         storeDTO.setCondition("INFO_STORE_SELECTONE");
         storeDTO = storeService.selectOne(storeDTO);
         storeDTO.setWorkList(storeWorkService.selectAll(storeWorkDTO));
+    	// 환경 변수 직접 접근
+    	String mapApiKey = System.getenv("MAP_API_KEY");
+    	log.info("log: 환경 변수에서 가져온 mapApiKey : [{}]", mapApiKey);
+        
         //데이터 전달
         model.addAttribute("storeInfo", storeDTO);
+        model.addAttribute("mapApiKey", mapApiKey);  // mapApiKey를 모델에 추가
         //확인
         log.info("log: infoStore - send storeInfo : [{}]", storeDTO);
+        log.info("log: infoStore - send mapApiKey : [{}]", mapApiKey);
         log.info("log: /infoStore.do infoStore - end");
         return PAGE_INFO_STORE;
     }
@@ -189,6 +208,10 @@ public class StoreController {
         log.info("log: loadListStore - param storeClosed : [{}]", storeClosed);
         log.info("log: loadListStore - param keyword : [{}]", keyword);
         log.info("log: loadListStore - param page : [{}]", page);
+        
+    	// 환경 변수 직접 접근
+    	String mapApiKey = System.getenv("MAP_API_KEY");
+    	log.info("log: 환경 변수에서 가져온 mapApiKey : [{}]", mapApiKey);
         
         ArrayList<StoreDTO> storeList; //가게 데이터
         int totalSize; //가게 데이터 총 개수
@@ -266,6 +289,7 @@ public class StoreController {
         model.addAttribute("storeClosed", storeClosed);
         model.addAttribute("keyword", keyword);
         model.addAttribute("page", page);
+        model.addAttribute("mapApiKey", mapApiKey);
         //확인
         log.info("log: loadListStore - send storeList : [{}]", storeList);
         log.info("log: loadListStore - send totalPage : [{}]", totalPage);
@@ -276,6 +300,7 @@ public class StoreController {
         log.info("log: loadListStore - send page : [{}]", page);
         log.info("log: loadListStore - send menuCnt : [{}]", menuCnt);
         log.info("log: loadListStore - send paymentCnt : [{}]", paymentCnt);
+        log.info("log: loadListStore - send mapApiKey : [{}]", mapApiKey);
         log.info("log: /loadListStore.do loadListStore - end");
         return PAGE_LOAD_LIST_STORE;
     }

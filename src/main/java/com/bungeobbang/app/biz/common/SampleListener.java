@@ -36,11 +36,18 @@ public class SampleListener implements ApplicationListener<ContextRefreshedEvent
 	//서버 시작시
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event)  {
-		log.warn("\u001B[32mListener log: 기본 데이터 insert문 실행 필수 / Starting to execute required initial data insert statements...\u001B[0m");
+	//	log.warn("\u001B[32mListener log: 기본 데이터 insert문 실행 필수 / Starting to execute required initial data insert statements...\u001B[0m");
 		log.warn("\u001B[32mListener log: fileName : sampleDataInsert.sql\u001B[0m");
 		ArrayList<ProductDTO> dbDatas = productService.selectAll(productDTO);
 		if(dbDatas == null || dbDatas.isEmpty()) {
 			log.info("\u001B[32mListener log: Listener Product isEmpty\u001B[0m");
+			
+			//크롤링 도커 빌드시 제외
+	        String enableCrawling = System.getenv("ENABLE_CRAWLING");
+	        if ("false".equalsIgnoreCase(enableCrawling)) {
+	            log.info("Crawling is disabled via environment variable.");
+	            return;
+	        }
 			//만약 상품 DB가 비어있을 경우
 			//크롤링한 데이터 받아오기
 			ArrayList<ProductDTO> datas = Crawling.findProductInfo();

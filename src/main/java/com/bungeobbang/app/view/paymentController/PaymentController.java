@@ -1,22 +1,24 @@
 package com.bungeobbang.app.view.paymentController;
 
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.bungeobbang.app.biz.member.MemberDTO;
 import com.bungeobbang.app.biz.member.MemberService;
 import com.bungeobbang.app.biz.payment.PaymentDTO;
 import com.bungeobbang.app.biz.payment.PaymentService;
 import com.bungeobbang.app.biz.point.PointDTO;
 import com.bungeobbang.app.biz.point.PointService;
-import jakarta.servlet.ServletContext;
+
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 @Slf4j
 @Controller
@@ -39,6 +41,22 @@ public class PaymentController {
 
     @Autowired
     private PointService pointService;
+    /*
+    @Value("${channel.key.shinhan}")
+    private String channelKeyShinhan;
+
+    @Value("${channel.key.woori}")
+    private String channelKeyWoori;
+
+    @Value("${channel.key.virtualAccount}")
+    private String channelKeyVirtualAccount;
+
+    @Value("${channel.key.toss}")
+    private String channelKeyToss;
+
+    @Value("${imp.init.key}")
+    private String impInitKey;
+    */
 
 
     // 포인트 환전 내역 전체 검색
@@ -72,6 +90,20 @@ public class PaymentController {
     @RequestMapping(value = "/addPoint.do") // 포인트 충전 페이지 이동 controller
     public String addPoint(HttpSession session, Model model, MemberDTO memberDTO, PointDTO pointDTO) {
         Integer memberPK = (Integer) session.getAttribute("userPK");
+        
+        String channelKeyShinhan = System.getenv("CHANNEL_KEY_SHINHAN");
+        String channelKeyWoori = System.getenv("CHANNEL_KEY_WOORI");
+        String channelKeyVirtualAccount = System.getenv("CHANNEL_KEY_VIRTUAL_ACCOUNT");
+        String channelKeyToss = System.getenv("CHANNEL_KEY_TOSS");
+        String impInitKey = System.getenv("IMP_INIT_KEY");
+        
+        log.info("Shinhan Key: {}", channelKeyShinhan);
+        log.info("Woori Key: {}", channelKeyWoori);
+        log.info("Virtual Account Key: {}", channelKeyVirtualAccount);
+        log.info("Toss Key: {}", channelKeyToss);
+        log.info("PortOne Init Key: {}", impInitKey);
+        
+        
         log.info("[");
         memberDTO.setCondition("INFO_CONDITION");
         memberDTO.setMemberNum(memberPK);
@@ -87,6 +119,11 @@ public class PaymentController {
         //----------------------------------------------------------------------------
 
         model.addAttribute("memberName", memberDTO.getMemberName());
+        model.addAttribute("channelKeyShinhan", channelKeyShinhan);
+        model.addAttribute("channelKeyWoori", channelKeyWoori);
+        model.addAttribute("channelKeyVirtualAccount", channelKeyVirtualAccount);
+        model.addAttribute("channelKeyToss", channelKeyToss);
+        model.addAttribute("impInitKey", impInitKey);
         return "pointRecharge";
     }
 

@@ -9,13 +9,13 @@ function selectPaymentMethod(method) {
     if (method === '신한카드' || method === '우리카드') {
         pg = 'tosspay';
         pay_method = 'card';
-        channelKey = '';
+        channelKey = channelKeyShinhan;
         window.selectedCardCompany = method;
     }
     else if (method === '가상계좌') {
         pg = 'html5_inicis';
         pay_method = 'vbank';
-        channelKey = '';
+        channelKey = channelKeyVirtualAccount;
         buyer_name = memberName;
         window.selectedCardCompany = method;
     }
@@ -26,7 +26,7 @@ function selectPaymentMethod(method) {
     else if (method === '토스페이') {
         pg = 'tosspay'; // 토스페이 간편결제
         pay_method = 'tosspay';
-        channelKey = '';
+        channelKey = channelKeyToss;
 
     }
 
