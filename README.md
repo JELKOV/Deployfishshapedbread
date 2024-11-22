@@ -9,7 +9,7 @@
   **[파트장]** 조충현<br>
 - ### Front<br>
   **[파트장]** 고미진<br>
-  안제호<br> - 배포 담당
+  안제호<br>
   정재희<br>
 - ### Service <br>
   **[파트장]** 한지윤<br>
@@ -28,3 +28,6 @@
 ![image](https://github.com/user-attachments/assets/731d8457-a2be-44c2-a7ac-51eb0959cb98)
 ![image](https://github.com/user-attachments/assets/1f38f58c-56d6-4044-9c20-2d2643d42b18)
 ![image](https://github.com/user-attachments/assets/b4b59554-431d-4e57-982f-ea4b2372f902)
+
+
+- Docker-AWS를 통한 배포 완성 -안제호
