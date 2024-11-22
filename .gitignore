@@ -35,3 +35,6 @@ build/
 **/WEB-INF/lib/
 **/WEB-INF/classes/
 **/uploads/board/
+
+
+.env
